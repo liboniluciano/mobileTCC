@@ -1,0 +1,29 @@
+/* Empty. Add your own CSS if you like */
+.floating-box{
+    display: inline-block;
+    
+}
+.semBorda{
+   border: none;
+}
+.center{
+     margin-left: auto;
+    margin-right: auto;
+    display: table;
+}
+.titleList{
+    font-size: 15px !important;
+}
+.line-break{
+  overflow: inherit !important ;
+  text-overflow: inherit !important ;
+  white-space: normal !important;
+}
+.legenda{
+    font-size: 10px !important;
+    text-decoration: underline;
+}
+.icone-maior{
+    font-size: 50px !important;
+    color:#A9A9A9;
+}

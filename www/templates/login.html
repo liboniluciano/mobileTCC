@@ -1,0 +1,33 @@
+<ion-view title="Login">
+    <ion-header-bar class="bar-stable bar-energized">
+        <h1 class="title" style="text-align: center">Reserva Fácil</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div id="divlogo">
+            <img class="full-image" src="img/logo.png">
+        </div>
+        <div id="formLogin">
+            <ion-list>
+                <label class="item item-input">
+               <i class="icon ion-person placeholder-icon"></i>
+              <input type="text" placeholder="Usuário">
+            </label>
+                <label class="item item-input">
+               <i class="icon ion-locked placeholder-icon"></i>
+              <input type="password" placeholder="Senha">
+            </label>
+            </ion-list>
+        </div>
+        <div id="divBtns" class="row">
+            <div id="lembrar-me" class=" row col-50">
+                <ion-checkbox class="checkbox-balanced semBorda">Lembrar-me</ion-checkbox>
+            </div>
+            <div class="row col-50">
+                <button ng-click="goHome($index); Vibrar()" class="button button-full button-balanced icon-right ion-chevron-right">Entrar</button>
+            </div>
+        </div>
+        <div "esqueceuSenha" class="center">
+            <h5>Esqueceu sua senha?</h3>
+        </div>
+    </ion-content>
+</ion-view>
