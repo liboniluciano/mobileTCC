@@ -1,5 +1,5 @@
 angular.module('app.routes', [])
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
         // Definição da tela que será exibida caso o usuário digite alguma url inválida
         $urlRouterProvider.otherwise('/login');
 
@@ -11,23 +11,40 @@ angular.module('app.routes', [])
                 controller: 'loginCtrl'
             })
 
-            .state('home', {
-                url: '/home',
-                templateUrl: 'templates/home.html',
-                controller: 'homeCtrl'
-            })
-              .state('cadastro', {
-                url: '/cadastro',
-                templateUrl: 'templates/cadastro.html',
-                controller: 'cadastroCtrl'
+            .state('menu', {
+                url: '/menu',
+                abstract: true,
+                templateUrl: 'templates/menu.html'
             })
 
-              .state('estabelecimento', {
-                url: '/estabelecimento',
-                templateUrl: 'templates/estabelecimento.html',
-                //controller: 'homeCtrl'
+            .state('menu.home', {
+                url: '/home',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/home.html'
+                    }
+                }
             })
-              .state('teste', {
+
+             .state('menu.cadastro', {
+                url: '/cadastro',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/cadastro.html',
+                        controller: 'cadastroCtrl'
+                    }
+                }
+            })
+
+              .state('menu.estabelecimento', {
+                url: '/estabelecimento',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/estabelecimento.html'
+                    }
+                }
+            })
+            .state('teste', {
                 url: '/teste',
                 templateUrl: 'templates/teste.html',
                 controller: 'ExampleController'

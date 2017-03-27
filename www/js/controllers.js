@@ -4,7 +4,7 @@ angular.module('app.controllers', [])
     .controller('loginCtrl', ['$scope','$cordovaVibration',
         function ($scope,$cordovaVibration) {
             $scope.goHome = function () {
-                window.location.href = "#/home";
+                window.location.href = "#/menu/home";
                 $cordovaVibration.vibrate(100);
             };
                       
@@ -13,7 +13,7 @@ angular.module('app.controllers', [])
     .controller('homeCtrl', ['$scope',
         function ($scope) {
             $scope.goCad = function () {
-                window.location.href = "#/cadastro";
+                window.location.href = "#/menu/cadastro";
             };
         }])
 
@@ -25,7 +25,7 @@ angular.module('app.controllers', [])
             };
             //Volta pra login
             $scope.goLogin = function () {
-                window.location.href = "#/index";
+                window.location.href = "#/menu/index";
             };
 
             $scope.goTeste = function () {
@@ -44,12 +44,12 @@ angular.module('app.controllers', [])
                     popoverOptions: CameraPopoverOptions,
                     saveToPhotoAlbum: false
                 };
-                window.location.href = "#cadastro";
+                window.location.href = "#/menu/cadastro";
 
                 $cordovaCamera.getPicture(options).then(function (imageData) {
-                    window.location.href = "#cadastro";
+                    window.location.href = "#/menu/cadastro";
                     $scope.imgURI = "data:image/jpeg;base64," + imageData;
-                    window.location.href = "#cadastro";
+                    window.location.href = "#/menu/cadastro";
                 }, function (err) {
                     // An error occured. Show a message to the user
                 });
