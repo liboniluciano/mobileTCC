@@ -44,6 +44,16 @@ angular.module('app.routes', [])
                     }
                 }
             })
+              .state('menu.lista', {
+                url: '/lista',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/lista.html',
+                        controller: 'listaCtrl'
+                    }
+                }
+            })
+
             .state('teste', {
                 url: '/teste',
                 templateUrl: 'templates/teste.html',

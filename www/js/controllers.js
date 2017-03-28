@@ -1,13 +1,13 @@
 angular.module('app.controllers', [])
 
 
-    .controller('loginCtrl', ['$scope','$cordovaVibration',
-        function ($scope,$cordovaVibration) {
+    .controller('loginCtrl', ['$scope', '$cordovaVibration',
+        function ($scope, $cordovaVibration) {
             $scope.goHome = function () {
                 window.location.href = "#/menu/home";
                 $cordovaVibration.vibrate(100);
             };
-                      
+
         }])
 
     .controller('homeCtrl', ['$scope',
@@ -17,8 +17,8 @@ angular.module('app.controllers', [])
             };
         }])
 
-    .controller('cadastroCtrl', ['$scope','$cordovaCamera','$cordovaFile',
-        function ($scope,$cordovaCamera,$cordovaFile) {
+    .controller('cadastroCtrl', ['$scope', '$cordovaCamera', '$cordovaFile',
+        function ($scope, $cordovaCamera, $cordovaFile) {
             //Volta pra home
             $scope.goHome = function () {
                 window.location.href = "#/home";
@@ -32,7 +32,7 @@ angular.module('app.controllers', [])
                 window.location.href = "#/teste";
             };
 
-                 $scope.takePicture = function () {
+            $scope.takePicture = function () {
                 var options = {
                     quality: 75,
                     destinationType: Camera.DestinationType.DATA_URL,
@@ -56,6 +56,38 @@ angular.module('app.controllers', [])
             }
 
         }])
+     
+
+                .controller('listaCtrl', function ($scope) {
+
+                    $scope.deleteItem = function (item) {
+                        $scope.items.splice($scope.items.indexOf(item), 1);
+                    };
+
+                    $scope.doRefresh = function () {
+                        // Subtract from the value of the first item ID to get the new one.
+                        var newId = $scope.items[0].id - 1;
+                        $scope.items.unshift({ id: newId });
+
+                        $scope.$broadcast('scroll.refreshComplete');
+                    };
+
+                    $scope.items = [
+                        { id: 1 },
+                        { id: 2 },
+                        { id: 3 },
+                        { id: 4 },
+                        { id: 5 },
+                        { id: 6 },
+                        { id: 7 },
+                        { id: 8 },
+                        { id: 9 },
+                        { id: 10 }
+                    ];
+                })
+
+
+
 
     .controller('ExampleController', ['$scope', '$cordovaCamera', '$cordovaFile',
         function ($scope, $cordovaCamera, $cordovaFile) {
@@ -66,7 +98,6 @@ angular.module('app.controllers', [])
                     sourceType: Camera.PictureSourceType.CAMERA,
                     allowEdit: true,
                     encodingType: Camera.EncodingType.JPEG,
-                    targetWidth: 300,
                     targetHeight: 300,
                     popoverOptions: CameraPopoverOptions,
                     saveToPhotoAlbum: false
@@ -97,4 +128,5 @@ angular.module('app.controllers', [])
                     // An error occured. Show a message to the user
                 });
             }
+
         }])

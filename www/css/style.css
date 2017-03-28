@@ -33,3 +33,7 @@
    max-height: 100%;
    height: 160px;
 }
+.imagem-redonda {
+    border-radius: 50%;
+}
+
