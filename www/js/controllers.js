@@ -57,7 +57,7 @@ angular.module('app.controllers', [])
 
         }])
      
-
+                //Aqui
                 .controller('listaCtrl', function ($scope) {
 
                     $scope.deleteItem = function (item) {
