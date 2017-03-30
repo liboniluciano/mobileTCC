@@ -53,6 +53,18 @@ angular.module('app.routes', [])
                     }
                 }
             })
+
+            .state('menu.reserva', {
+                url: '/reserva',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/reserva.html',
+                        //controller: 'listaCtrl'
+                    }
+                }
+            })
+//Aqui
+
 //Aqui
             .state('teste', {
                 url: '/teste',

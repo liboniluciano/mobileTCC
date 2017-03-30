@@ -36,5 +36,22 @@
 .imagem-redonda {
     border-radius: 50%;
 }
+
+.mesma-linha{
+    white-space: nowrap!important;
+}
+.quebra-sem-espaco{
+    margin: -10px 0 10px !important;
+}
+.border-top{
+    border-top: solid 1px #ccc;
+    padding-top: 30px;
+}
+.sem-borda-top{
+    border-top: 0px !important;
+}
+.sem-borda-bottom{
+    border-bottom: 0px !important;
+}
 /*Aqui*/
 
