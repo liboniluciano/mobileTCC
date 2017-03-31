@@ -24,19 +24,30 @@
                         <span class="input-label">Data:</span>
                         <input type="date">
                     </label>
-
+                </ion-list>
             </div>
             <div id="divHorario" class="row col" style="margin-top:7px;">
                 <label class="item item-input">
                         <span class="input-label">Horário:</span>
                         <input type="text">
                     </label>
-
             </div>
-            </ion-list>
+        </div>
+        <div id="divServicos col">
+            <label class="item item-input item-select">
+            <div class="input-label">
+             Serviços:
+            </div>
+            <select ng-model="mySelect"  ng-change="showSelectValue(mySelect)">
+                <option value="" disabled>Selecione</option>
+                <option  ng-repeat="servico in servicos" value = "{{servico.id}} ">{{servico.nome}} {{servico.valor}}</option>
+            </select>
+            </label>
         </div>
 
-        </div>
+
+
+
 
 
     </ion-content>

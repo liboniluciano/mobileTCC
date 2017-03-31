@@ -56,35 +56,35 @@ angular.module('app.controllers', [])
             }
 
         }])
-     
-                //Aqui
-                .controller('listaCtrl', function ($scope) {
 
-                    $scope.deleteItem = function (item) {
-                        $scope.items.splice($scope.items.indexOf(item), 1);
-                    };
+    //Aqui
+    .controller('listaCtrl', function ($scope) {
 
-                    $scope.doRefresh = function () {
-                        // Subtract from the value of the first item ID to get the new one.
-                        var newId = $scope.items[0].id - 1;
-                        $scope.items.unshift({ id: newId });
+        $scope.deleteItem = function (item) {
+            $scope.items.splice($scope.items.indexOf(item), 1);
+        };
 
-                        $scope.$broadcast('scroll.refreshComplete');
-                    };
+        $scope.doRefresh = function () {
+            // Subtract from the value of the first item ID to get the new one.
+            var newId = $scope.items[0].id - 1;
+            $scope.items.unshift({ id: newId });
 
-                    $scope.items = [
-                        { id: 1 },
-                        { id: 2 },
-                        { id: 3 },
-                        { id: 4 },
-                        { id: 5 },
-                        { id: 6 },
-                        { id: 7 },
-                        { id: 8 },
-                        { id: 9 },
-                        { id: 10 }
-                    ];
-                })
+            $scope.$broadcast('scroll.refreshComplete');
+        };
+
+        $scope.items = [
+            { id: 1 },
+            { id: 2 },
+            { id: 3 },
+            { id: 4 },
+            { id: 5 },
+            { id: 6 },
+            { id: 7 },
+            { id: 8 },
+            { id: 9 },
+            { id: 10 }
+        ];
+    })
 
 
 
@@ -130,3 +130,23 @@ angular.module('app.controllers', [])
             }
 
         }])
+    .controller('reservaCtrl', function ($scope) {
+
+        $scope.deleteItem = function (item) {
+            $scope.items.splice($scope.items.indexOf(item), 1);
+        };
+
+        $scope.selectedValues = [];
+
+        $scope.servicos = [
+            { id: '1', nome: 'Banho e tosa', valor: '30' },
+            { id: '2', nome: 'Vacina', valor: '25' },
+            { id: '3', nome: 'Banho', valor: '20' },
+        ];
+
+        $scope.showSelectValue = function (mySelect) {
+            console.log(mySelect);
+
+        }
+
+    });

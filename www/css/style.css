@@ -53,5 +53,17 @@
 .sem-borda-bottom{
     border-bottom: 0px !important;
 }
-/*Aqui*/
+/*Aqui DDL*/
+.dropdown {
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+}
+.dropdown dt a span,
+.multiSel span {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0 3px 2px 0;
+}
+
 

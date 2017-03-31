@@ -59,7 +59,7 @@ angular.module('app.routes', [])
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/reserva.html',
-                        //controller: 'listaCtrl'
+                        controller: 'reservaCtrl'
                     }
                 }
             })
