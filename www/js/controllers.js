@@ -130,23 +130,49 @@ angular.module('app.controllers', [])
             }
 
         }])
-    .controller('reservaCtrl', function ($scope) {
+    .controller('reservaCtrl', function ($scope,$ionicPopup) {
 
-        $scope.deleteItem = function (item) {
-            $scope.items.splice($scope.items.indexOf(item), 1);
-        };
-
-        $scope.selectedValues = [];
-
+        //Objeto de serviços
         $scope.servicos = [
             { id: '1', nome: 'Banho e tosa', valor: '30' },
             { id: '2', nome: 'Vacina', valor: '25' },
             { id: '3', nome: 'Banho', valor: '20' },
         ];
-
+        //Objeto de pagamentos
+        $scope.pagamentos = [
+            { id: '1', nome: 'Dinheiro' },
+            { id: '2', nome: 'Cartão de Crédito' },
+            { id: '3', nome: 'Cheque' },
+        ];
+        //Função que recupera serviço selecionado
         $scope.showSelectValue = function (mySelect) {
             console.log(mySelect);
-
         }
+        //Função que recupera pagamento selecionado
+        $scope.pegaFormaPagamento = function (formaPagamento) {
+            console.log(formaPagamento);
+        }
+        //Objeto que vai receber itens da reserva
+        $scope.dadosReserva =
+            [];
+
+        console.log($scope.horario);
+        //Popup de confirmação
+        $scope.addService = function () {
+            //Pegar no objeto dados da reserva para exibir na popup - TODO
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Deseja confirmar?',
+                template: 'Deseja confirmar sua reserva?',
+                
+            });
+            confirmPopup.then(function (res) {
+                if (res) {
+                    console.log('Sim');
+                } else {
+                    console.log('Não');
+                }
+            });
+
+        };
 
     });

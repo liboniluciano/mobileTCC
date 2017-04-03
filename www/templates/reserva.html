@@ -22,17 +22,18 @@
                 <ion-list>
                     <label class="item item-input">
                         <span class="input-label">Data:</span>
-                        <input type="date">
+                        <input type="date" ng-model="dataReserva">
                     </label>
                 </ion-list>
             </div>
             <div id="divHorario" class="row col" style="margin-top:7px;">
                 <label class="item item-input">
                         <span class="input-label">Horário:</span>
-                        <input type="text">
+                        <input type="text" ng-model="horario">
                     </label>
             </div>
         </div>
+        <!--Combo de serviços oferecidos-->
         <div id="divServicos col">
             <label class="item item-input item-select">
             <div class="input-label">
@@ -43,6 +44,27 @@
                 <option  ng-repeat="servico in servicos" value = "{{servico.id}} ">{{servico.nome}} {{servico.valor}}</option>
             </select>
             </label>
+            <!--Combo formas de pagamento-->
+            <label class="item item-input item-select">
+            <div class="input-label">
+             Forma de Pagamento:
+            </div>
+            <select ng-model="formaPagamento" ng-change="pegaFormaPagamento(formaPagamento)">
+                <option value="" disabled>Selecione</option>
+                <option  ng-repeat="pagamento in pagamentos" value = "{{pagamento.id}} ">{{pagamento.nome}}</option>
+            </select>
+            </label>
+        </div>
+        <br>
+        <!--Botões-->
+        <div id="divBtns" class="row has-footer">
+              <div id="btnConfirma" class="row col-50">
+                <button class="button button-block button-balanced icon icon-left ion-checkmark-circled" ng-click="addService()">Confirmar</button>
+            </div>
+            <br>
+            <div id="btnConfirma" class="row col-50">
+                <button class="button button-block button-assertive icon icon-left ion-android-cancel">Cancelar</button>
+            </div>
         </div>
 
 
