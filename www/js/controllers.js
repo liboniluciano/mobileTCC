@@ -86,50 +86,6 @@ angular.module('app.controllers', [])
         ];
     })
 
-
-
-
-    .controller('ExampleController', ['$scope', '$cordovaCamera', '$cordovaFile',
-        function ($scope, $cordovaCamera, $cordovaFile) {
-            $scope.takePicture = function () {
-                var options = {
-                    quality: 75,
-                    destinationType: Camera.DestinationType.DATA_URL,
-                    sourceType: Camera.PictureSourceType.CAMERA,
-                    allowEdit: true,
-                    encodingType: Camera.EncodingType.JPEG,
-                    targetHeight: 300,
-                    popoverOptions: CameraPopoverOptions,
-                    saveToPhotoAlbum: false
-                };
-
-                $cordovaCamera.getPicture(options).then(function (imageData) {
-                    $scope.imgURI = "data:image/jpeg;base64," + imageData;
-                }, function (err) {
-                    // An error occured. Show a message to the user
-                });
-            }
-            $scope.choosePhoto = function () {
-                var options = {
-                    quality: 75,
-                    destinationType: Camera.DestinationType.DATA_URL,
-                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                    allowEdit: true,
-                    encodingType: Camera.EncodingType.JPEG,
-                    targetWidth: 300,
-                    targetHeight: 300,
-                    popoverOptions: CameraPopoverOptions,
-                    saveToPhotoAlbum: false
-                };
-
-                $cordovaCamera.getPicture(options).then(function (imageData) {
-                    $scope.imgURI = "data:image/jpeg;base64," + imageData;
-                }, function (err) {
-                    // An error occured. Show a message to the user
-                });
-            }
-
-        }])
     .controller('reservaCtrl', function ($scope,$ionicPopup) {
 
         //Objeto de serviços
@@ -174,5 +130,21 @@ angular.module('app.controllers', [])
             });
 
         };
+    })
 
-    });
+    .controller('ultimasReservasCtrl',function($scope){
+        //Objeto para ultimas reservasCtrl
+
+        
+        
+        $scope.ultmasReservas = [
+            {id: '1', nomeEstabelecimento :'Pet Shop Santos Dummont', dataReserva: '21/03/2017',horarioReserva:'15h30' ,valor:'R$150,00'},
+            {id: '2', nomeEstabelecimento :'Salão da Didica', dataReserva: '23/03/2017', horarioReserva:'17h30' ,valor:'R$250,00'},
+            {id: '3', nomeEstabelecimento :'Consultório Odontológico', dataReserva: '28/03/2017',horarioReserva:'14h30' ,valor:'R$80,00'},
+            {id: '4', nomeEstabelecimento :'Restaurante Barão', dataReserva: '01/04/2017',horarioReserva:'12h30' ,valor:'R$50,00'},
+        ];
+
+
+    })
+    
+

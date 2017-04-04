@@ -63,12 +63,14 @@ angular.module('app.routes', [])
                     }
                 }
             })
-//Aqui
-
-//Aqui
-            .state('teste', {
-                url: '/teste',
-                templateUrl: 'templates/teste.html',
-                controller: 'ExampleController'
+            .state('menu.ultimasReservas', {
+                url: '/ultimasreservas',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/ultimasReservas.html',
+                        controller: 'ultimasReservasCtrl'
+                    }
+                }
             })
+
     });
