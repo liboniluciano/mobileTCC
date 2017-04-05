@@ -1,21 +1,43 @@
 <ion-view>
     <ion-content>
-        <div class="bar bar-header">
-            <a ng-click="goHome()" class="button icon-left ion-chevron-left button-clear button-dark"></a>
-            <div class="h1 title">Reserva Fácil</div>
+        <div id="divImgEstabelecimento" class="item semBorda">
+            <img class="full-image semBorda" src="http://i.imgur.com/AKzer2d.jpg">
         </div>
-        <br>
-
-        <div id="divImgEstabelecimento" class="item">
-            <img class="full-image" src="http://i.imgur.com/AKzer2d.jpg">
-        </div>
-        <div id="divDetalhesEstabelecimento" class="row">
-            <!--<div id="divAvatar" class="row col-20 row-left">-->
-            <div class="item item-thumbnail-left item-icon-right row col-30 row-left ">
-                <img class="full-image" src="img/ionic.png">
-
+        <div id="divDetalhesEstabelecimento" class="row ">
+            <!--<div id="divAvatar" class="row col-25 row-left">-->
+            <div class="item item-thumbnail-left item-icon-right row col-25 row-left semBorda">
+                <img src="img/ionic.png">
+            </div>
+            <div class="row col row-center text-center ">
+                <h4 class="mesma-linha">Milani Agropet</h4>
+                <p class="quebra-sem-espaco">Rua das Árvores, 931. Estação.</p>
+                <p class="quebra-sem-espaco">Telefone:(99) 9999-9999</p>
             </div>
         </div>
+        <div id="divHorarios" class="item">
+            <h4 class="text-center">Horário de Atendimento </h4>
+
+            <!--<ion-item ng-repeat="horario in horariosEstabelecimento" style="display: inline-block">
+                <ul>
+                    <li>
+                        <p>{{horario.diaSemana}}</p>
+                    </li>
+                    <li>
+                        <p>{{horario.horario}}
+                    </li>
+                </ul>
+            </ion-item>  -->
+            <p>Segunda a Sexta das 8h às 18hrs</p>
+            <p>Sábado das 9h as 13hrs</p>
+        </div>
+         <h6 class="text-center">Pagamentos </h6>
+        <div id="divFormasPagamentos" class="row">
+            <div class="col">
+                   <i class="icon ion-cash icone-medio"></i>
+                    <i class="icon ion-card icone-medio"></i>
+            </div>
+        </div>
+        <button class="button button-positive button-block icon ion-bookmark">  Reservar</button>
 
     </ion-content>
 </ion-view>

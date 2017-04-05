@@ -40,7 +40,8 @@ angular.module('app.routes', [])
                 url: '/estabelecimento',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/estabelecimento.html'
+                        templateUrl: 'templates/estabelecimento.html',
+                        controller: 'estabelecimentoCtrl'
                     }
                 }
             })

@@ -86,7 +86,7 @@ angular.module('app.controllers', [])
         ];
     })
 
-    .controller('reservaCtrl', function ($scope,$ionicPopup) {
+    .controller('reservaCtrl', function ($scope, $ionicPopup) {
 
         //Objeto de serviços
         $scope.servicos = [
@@ -119,7 +119,7 @@ angular.module('app.controllers', [])
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Deseja confirmar?',
                 template: 'Deseja confirmar sua reserva?',
-                
+
             });
             confirmPopup.then(function (res) {
                 if (res) {
@@ -132,19 +132,25 @@ angular.module('app.controllers', [])
         };
     })
 
-    .controller('ultimasReservasCtrl',function($scope){
+    .controller('ultimasReservasCtrl', function ($scope) {
         //Objeto para ultimas reservasCtrl
-
-        
-        
         $scope.ultmasReservas = [
-            {id: '1', nomeEstabelecimento :'Pet Shop Santos Dummont', dataReserva: '21/03/2017',horarioReserva:'15h30' ,valor:'R$150,00'},
-            {id: '2', nomeEstabelecimento :'Salão da Didica', dataReserva: '23/03/2017', horarioReserva:'17h30' ,valor:'R$250,00'},
-            {id: '3', nomeEstabelecimento :'Consultório Odontológico', dataReserva: '28/03/2017',horarioReserva:'14h30' ,valor:'R$80,00'},
-            {id: '4', nomeEstabelecimento :'Restaurante Barão', dataReserva: '01/04/2017',horarioReserva:'12h30' ,valor:'R$50,00'},
+            { id: '1', nomeEstabelecimento: 'Pet Shop Santos Dummont', dataReserva: '21/03/2017', horarioReserva: '15h30', valor: 'R$150,00' },
+            { id: '2', nomeEstabelecimento: 'Salão da Didica', dataReserva: '23/03/2017', horarioReserva: '17h30', valor: 'R$250,00' },
+            { id: '3', nomeEstabelecimento: 'Consultório Odontológico', dataReserva: '28/03/2017', horarioReserva: '14h30', valor: 'R$80,00' },
+            { id: '4', nomeEstabelecimento: 'Restaurante Barão', dataReserva: '01/04/2017', horarioReserva: '12h30', valor: 'R$50,00' },
+        ];
+    })
+    .controller('estabelecimentoCtrl', function ($scope) {
+        $scope.horariosEstabelecimento = [
+            { id: '1', diaSemana: 'Seg', horario: '8hrs às 17hrs' },
+            { id: '2', diaSemana: 'Ter', horario: '8hrs às 17hrs' },
+            { id: '3', diaSemana: 'Qua', horario: '8hrs às 17hrs' },
+            { id: '4', diaSemana: 'Qui', horario: '8hrs às 17hrs' },
+            { id: '5', diaSemana: 'Sex', horario: '8hrs às 17hrs' },
+            { id: '6', diaSemana: 'Sáb', horario: '8hrs às 11hrs' },
         ];
 
+    });
 
-    })
-    
 

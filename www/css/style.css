@@ -27,6 +27,10 @@
     font-size: 50px !important;
     color:#A9A9A9;
 }
+.icone-medio{
+    font-size: 35px !important;
+    
+}
 .cabecalho-menu {
    background-color: #f8f8f8;
    max-width: 100%;
@@ -53,9 +57,5 @@
 .sem-borda-bottom{
     border-bottom: 0px !important;
 }
-.gridStyle {
-    border: 1px solid rgb(212,212,212);
-    width: 400px; 
-    height: 300px;
-}
+
 
