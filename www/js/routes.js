@@ -73,5 +73,14 @@ angular.module('app.routes', [])
                     }
                 }
             })
+             .state('menu.alterarSenha', {
+                url: '/alterarsenha',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/alterarSenha.html',
+                        //controller: 'alterarSenhaCtrl'
+                    }
+                }
+            })
 
     });
