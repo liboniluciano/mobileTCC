@@ -1,4 +1,4 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['app.service'])
 
 
     .controller('loginCtrl', ['$scope', '$cordovaVibration',
@@ -8,13 +8,44 @@ angular.module('app.controllers', [])
                 $cordovaVibration.vibrate(100);
             };
 
+
+
         }])
 
-    .controller('homeCtrl', ['$scope',
-        function ($scope) {
+    .controller('homeCtrl', ['$scope', 'Estabelecimentos',
+        function ($scope, Estabelecimentos) {
+            $scope.vm = {
+                estabelecimentos: []
+            };
+
             $scope.goCad = function () {
                 window.location.href = "#/menu/cadastro";
             };
+
+            $scope.teste = function () {
+                console.log("hehehe");
+            };
+
+            $scope.consulta = function () {
+                console.log("cheguei");
+                Estabelecimentos.getEstabelecimentos()
+                    .then(function (response) {
+                        $scope.produtos = response;
+                        console.log(response);
+                        response.forEach(function (item) {
+                            $scope.vm.estabelecimentos.push({
+                               nome: item.nome,
+                               categoria: item.categoria,
+                               url_img: item.url_img
+                            });
+                        });
+                    });
+            };
+
+            $scope.goReserva = function() {
+                window.location.href = "#/menu/reserva";
+            };
+
         }])
 
     .controller('cadastroCtrl', ['$scope', '$cordovaCamera', '$cordovaFile',
@@ -22,6 +53,7 @@ angular.module('app.controllers', [])
             //Volta pra home
             $scope.goHome = function () {
                 window.location.href = "#/home";
+
             };
             //Volta pra login
             $scope.goLogin = function () {
@@ -151,6 +183,11 @@ angular.module('app.controllers', [])
             { id: '6', diaSemana: 'Sáb', horario: '8hrs às 11hrs' },
         ];
 
-    });
+
+    })
+
+
+
+
 
 
