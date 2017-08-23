@@ -35,13 +35,13 @@
         </div>
         <!--Combo de serviços oferecidos-->
         <div id="divServicos col">
-            <label class="item item-input item-select">
+            <label class="item item-input item-select" data-ng-init="consultaServicos();consultaPagamentos()">
             <div class="input-label">
              Serviços:
             </div>
-            <select ng-model="mySelect"  ng-change="showSelectValue(mySelect)">
+            <select>
                 <option value="" disabled>Selecione</option>
-                <option  ng-repeat="servico in servicos" value = "{{servico.id}} ">{{servico.nome}} {{servico.valor}}</option>
+                <option  ng-repeat="reserva in vm.estReserva" value = "{{reserva.id_servico}} ">{{reserva.tipo_servico}} </option>
             </select>
             </label>
             <!--Combo formas de pagamento-->
@@ -51,7 +51,7 @@
             </div>
             <select ng-model="formaPagamento" ng-change="pegaFormaPagamento(formaPagamento)">
                 <option value="" disabled>Selecione</option>
-                <option  ng-repeat="pagamento in pagamentos" value = "{{pagamento.id}} ">{{pagamento.nome}}</option>
+                <option  ng-repeat="pagamento in vm1.estPagamento" value = "{{pagamento.id_tipo_pagamento}} ">{{pagamento.desc_tipo_pagamento}}</option>
             </select>
             </label>
         </div>
@@ -63,7 +63,7 @@
             </div>
             <br>
             <div id="btnConfirma" class="row col-50">
-                <button class="button button-block button-assertive icon icon-left ion-android-cancel">Cancelar</button>
+                <button class="button button-block button-assertive icon icon-left ion-android-cancel" >Cancelar</button>
             </div>
         </div>
 

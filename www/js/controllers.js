@@ -118,20 +118,47 @@ angular.module('app.controllers', ['app.service'])
         ];
     })
 
-    .controller('reservaCtrl', function ($scope, $ionicPopup) {
+    .controller('reservaCtrl', ['$scope','Estabelecimentos',
+        function ($scope,Estabelecimentos,$ionicPopup,) {
+            //Objeto que recebe os serviços daquele estabelecimento 
+              $scope.vm = {
+                estReserva: [],
+                estPagamento: []
+            };
+          ;
 
-        //Objeto de serviços
-        $scope.servicos = [
-            { id: '1', nome: 'Banho e tosa', valor: '30' },
-            { id: '2', nome: 'Vacina', valor: '25' },
-            { id: '3', nome: 'Banho', valor: '20' },
-        ];
-        //Objeto de pagamentos
-        $scope.pagamentos = [
-            { id: '1', nome: 'Dinheiro' },
-            { id: '2', nome: 'Cartão de Crédito' },
-            { id: '3', nome: 'Cheque' },
-        ];
+            //Método da API que consulta serviços daquele estabelecimento
+               $scope.consultaServicos = function () {
+                console.log("cheguei");
+                Estabelecimentos.getServicos()
+                    .then(function (response) {
+                        $scope.produtos = response;
+                        console.log(response);
+                        response.forEach(function (item) {
+                            $scope.vm.estReserva.push({
+                               id_servico: item.id_servico,
+                               tipo_servico: item.tipo_servico,
+                            });
+                        });
+                    });
+            };
+
+             //Método da API que consulta serviços daquele estabelecimento
+               $scope.consultaPagamentos = function () {
+                console.log("cheguei");
+                Estabelecimentos.getPagamentos()
+                    .then(function (response) {
+                        $scope.produtos = response;
+                        console.log(response);
+                        response.forEach(function (item1) {
+                            $scope.vm.estPagamento.push({
+                               id_tipo_pagamento: item1.id_tipo_pagamento,
+                               desc_tipo_pagamento: item1.desc_tipo_pagamento,
+                            });
+                        });
+                    });
+            };
+
         //Função que recupera serviço selecionado
         $scope.showSelectValue = function (mySelect) {
             console.log(mySelect);
@@ -162,7 +189,7 @@ angular.module('app.controllers', ['app.service'])
             });
 
         };
-    })
+    }])
 
     .controller('ultimasReservasCtrl', function ($scope) {
         //Objeto para ultimas reservasCtrl
@@ -173,7 +200,33 @@ angular.module('app.controllers', ['app.service'])
             { id: '4', nomeEstabelecimento: 'Restaurante Barão', dataReserva: '01/04/2017', horarioReserva: '12h30', valor: 'R$50,00' },
         ];
     })
-    .controller('estabelecimentoCtrl', function ($scope) {
+    .controller('estabelecimentoCtrl', ['$scope','Estabelecimentos',
+        function ($scope,Estabelecimentos) {
+
+             $scope.vm = {
+                estabelecimentosEsp: []
+            };
+
+        //Objeto que consulta método da API específica
+
+          $scope.consultaEsp = function () {
+                console.log("cheguei");
+                Estabelecimentos.getEstabelecimentoEsp()
+                    .then(function (response) {
+                        $scope.produtos = response;
+                        console.log(response);
+                        response.forEach(function (item) {
+                            $scope.vm.estabelecimentosEsp.push({
+                               nome: item.nome,
+                               endereco: item.endereco,
+                               numero: item.numero,
+                               bairro: item.bairro,
+                               telefone_1: item.telefone_1
+                            });
+                        });
+                    });
+            };
+
         $scope.horariosEstabelecimento = [
             { id: '1', diaSemana: 'Seg', horario: '8hrs às 17hrs' },
             { id: '2', diaSemana: 'Ter', horario: '8hrs às 17hrs' },
@@ -183,11 +236,10 @@ angular.module('app.controllers', ['app.service'])
             { id: '6', diaSemana: 'Sáb', horario: '8hrs às 11hrs' },
         ];
 
+        $scope.goReserva = function(){
+           window.location.href = "#/menu/reserva"
+        };
 
-    })
-
-
-
-
+    }])
 
 
