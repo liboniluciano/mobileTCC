@@ -22,14 +22,14 @@
                 <ion-list>
                     <label class="item item-input">
                         <span class="input-label">Data:</span>
-                        <input type="date" ng-model="dataReserva">
+                        <input type="date" ng-model="rev.dataReserva">
                     </label>
                 </ion-list>
             </div>
             <div id="divHorario" class="col">
                 <label class="item item-input">
                         <span class="input-label">Horário:</span>
-                        <input type="text" ng-model="horario">
+                        <input type="text" ng-model="rev.horario">
                     </label>
             </div>
         </div>
@@ -39,9 +39,10 @@
             <div class="input-label">
              Serviços:
             </div>
-            <select>
+            <select ng-model="rev.servico" >
                 <option value="" disabled>Selecione</option>
-                <option  ng-repeat="reserva in vm.estReserva" value = "{{reserva.id_servico}} ">{{reserva.tipo_servico}} </option>
+                <option ng-repeat="reserva in vm.estReserva" value = "{{reserva.id_servico}} ">{{reserva.tipo_servico}} </option>
+                
             </select>
             </label>
             <!--Combo formas de pagamento-->
@@ -49,9 +50,9 @@
             <div class="input-label">
              Forma de Pagamento:
             </div>
-            <select ng-model="formaPagamento" ng-change="pegaFormaPagamento(formaPagamento)">
+            <select ng-model="rev.formaPagamento" ng-change="pegaFormaPagamento(formaPagamento)">
                 <option value="" disabled>Selecione</option>
-                <option  ng-repeat="pagamento in vm1.estPagamento" value = "{{pagamento.id_tipo_pagamento}} ">{{pagamento.desc_tipo_pagamento}}</option>
+                <option  ng-repeat="pagamento in vm.estPagamento" value = "{{pagamento.id_tipo_pagamento}} ">{{pagamento.desc_tipo_pagamento}}</option>
             </select>
             </label>
         </div>
@@ -59,7 +60,7 @@
         <!--Botões-->
         <div id="divBtns" class="row has-footer">
               <div id="btnConfirma" class="row col-50">
-                <button class="button button-block button-balanced icon icon-left ion-checkmark-circled" ng-click="addService()">Confirmar</button>
+                <button class="button button-block button-balanced icon icon-left ion-checkmark-circled" ng-click="confirmaReserva()">Confirmar</button>
             </div>
             <br>
             <div id="btnConfirma" class="row col-50">

@@ -154,12 +154,30 @@ pool.connect(function(err, client, done) {
   if(err) {
     return console.error('error fetching client from pool', err);
   }
-  client.query('insert into tb_reservas (id_servico, id_tipo_pagamento, id_estabelecimento, data_reserva, horario, fg_ativo) values (' + 
-  	', \'' + req.body.id_servico + '\', ' + req.body.id_pagamento + ',' + req.body.estabelecimento +  req.body.data_reserva +  req.body.horario + req.body.fg_ativo +')', function(err, result) {
+  client.query('insert into tb_reservas (id_reserva,id_cliente, id_servico, id_tipo_pagamento, id_estabelecimento, data_reserva, horario, fg_ativo) values (' 
+				+ req.body.id_reserva + ', '
+				+ req.body.id_cliente + ', '
+				+ req.body.id_servico + ', '
+				+ req.body.id_tipo_pagamento + ','  
+				+  req.body.id_estabelecimento +  ', \'' 
+				+ req.body.data_reserva + '\',' 
+				+  req.body.horario + ',' 
+				+req.body.fg_ativo +')', 
+				
+		function(err, result) {
     //call `done()` to release the client back to the pool 
     done();
  
     if(err) {
+				console.log(req.body.id_cliente);
+			console.log(req.body.id_cliente);
+			console.log(req.body.id_servico);
+			console.log(req.body.id_tipo_pagamento);
+			console.log(req.body.id_estabelecimento );
+			console.log(req.body.data_reserva);
+			console.log(req.body.horario);
+			console.log(req.body.fg_ativo);
+			
       return console.error('error running query', err);
     }
 

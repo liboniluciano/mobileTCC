@@ -8,11 +8,11 @@ function Estabelecimentos($http) {
   return {
     getEstabelecimentoEsp: getEstabelecimentoEsp,
     getEstabelecimentos: getEstabelecimentos,
-    postEstabelcimentos: postEstabelecimentos,
+    postEstabelecimentos: postEstabelecimentos,
     getServicos: getServicos,
     getPagamentos: getPagamentos
 
-   
+
   };
 
   function getEstabelecimentos() {
@@ -31,7 +31,7 @@ function Estabelecimentos($http) {
       });
   }
 
-   function getServicos() {
+  function getServicos() {
     var req = {
       method: 'GET',
       url: 'http://localhost:3000/consultaServicos'
@@ -81,11 +81,43 @@ function Estabelecimentos($http) {
   }
 
 
-  function postEstabelecimentos() {
-    return $http.post('http://localhost:3000/insere')
-      .then(function (response) {
-        console.log('Inseriu Produto', response);
-        return response.data;
+  function postEstabelecimentos(id_reserva,id_cliente, id_servico, id_tipo_pagamento, id_estabelecimento, data_reserva, horario, fg_ativo) {
+     console.log("id reserva: " + id_reserva);
+    console.log("id cliente: " + id_cliente);
+    console.log("id servico " + id_servico);
+    console.log("id tipo pagamento " + id_tipo_pagamento);
+    console.log("id_tipo_estabelecimento " + id_estabelecimento);
+    console.log("data reserva" + data_reserva);
+    console.log("horario" + horario);
+    console.log("fg_ativo" + fg_ativo);
+    //console.log(id_servico);
+    var req = {
+      method: 'POST',
+      url: 'http://localhost:3000/insere',
+      data: {
+        id_cliente: id_cliente,
+        id_servico: id_servico,
+        id_tipo_pagamento: id_tipo_pagamento,
+        id_estabelecimento: id_estabelecimento,
+        data_reserva: data_reserva,
+        horario: horario,
+        fg_ativo: fg_ativo
+      }
+    };
+
+    $http(req).then(function (result) {
+      $ionicPopup.alert({
+        title: 'Reserva',
+        template: 'Reserva efetuada!'
+      }).then(function (result) { 
+         result = true;
       });
+    });
+
+    // return $http.post('http://localhost:3000/insere')
+    //   .then(function (response) {
+    //     console.log('Inseriu Produto', response);
+    //     return response.data;
+    //   });
   };
 } 
