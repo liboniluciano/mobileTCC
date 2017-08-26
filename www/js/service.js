@@ -10,7 +10,8 @@ function Estabelecimentos($http) {
     getEstabelecimentos: getEstabelecimentos,
     postEstabelecimentos: postEstabelecimentos,
     getServicos: getServicos,
-    getPagamentos: getPagamentos
+    getPagamentos: getPagamentos,
+    getReservas: getReservas
 
 
   };
@@ -36,6 +37,7 @@ function Estabelecimentos($http) {
       method: 'GET',
       url: 'http://localhost:3000/consultaServicos'
     };
+    
 
     return $http(req)
       .then(function (result) {
@@ -46,6 +48,26 @@ function Estabelecimentos($http) {
         console.log(error);
       });
   }
+
+
+  function getReservas() {
+    var req = {
+      method: 'GET',
+      url: 'http://localhost:3000/consultaReservas'
+    };
+    
+
+    return $http(req)
+      .then(function (result) {
+        return result.data;
+        console.log('Get Reservas', response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+
 
 
   function getEstabelecimentoEsp() {
@@ -95,6 +117,7 @@ function Estabelecimentos($http) {
       method: 'POST',
       url: 'http://localhost:3000/insere',
       data: {
+        id_reserva: id_reserva,
         id_cliente: id_cliente,
         id_servico: id_servico,
         id_tipo_pagamento: id_tipo_pagamento,

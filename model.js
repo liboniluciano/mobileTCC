@@ -29,7 +29,7 @@ app.get('/consulta', function (req, res) {
 	  if(err) {
 		return console.error('error fetching client from pool', err);
 	  }
-	  client.query('SELECT * from tb_estabelecimento order by nome', 
+	  client.query('SELECT * from tb_estabelecimento where id_estabelecimento = 2', 
       function(err, result) {
 		//call `done()` to release the client back to the pool 
 		done();
@@ -77,7 +77,7 @@ app.get('/consultaPagamento', function (req, res) {
 	  if(err) {
 		return console.error('error fetching client from pool', err);
 	  }
-	  client.query('select se.id_tipo_pagamento, tp.desc_tipo_pagamento from tb_servicos se inner join tb_tipos_pagamentos tp ON se.id_tipo_pagamento = tp.id_tipo_pagamento where id_estabelecimento = 2 ', 
+	  client.query('select distinct se.id_tipo_pagamento, tp.desc_tipo_pagamento from tb_servicos se inner join tb_tipos_pagamentos tp ON se.id_tipo_pagamento = tp.id_tipo_pagamento where id_estabelecimento = 2 ', 
       function(err, result) {
 		//call `done()` to release the client back to the pool 
 		done();
@@ -118,6 +118,32 @@ app.get('/consultaEspecifico', function (req, res) {
 });
 
 
+app.get('/consultaReservas', function (req, res) {
+	
+	// to run a query we can acquire a client from the pool, 
+	// run a query on the client, and then return the client to the pool 
+	pool.connect(function(err, client, done) {
+	  if(err) {
+		return console.error('error fetching client from pool', err);
+	  }
+	  client.query('select e.nome,r.data_reserva,r.horario, s.valor from tb_reservas r inner join tb_estabelecimento e on r.id_estabelecimento = e.id_estabelecimento inner join tb_servicos s on r.id_servico = s.id_servico order by data_reserva ', 
+      function(err, result) {
+		//call `done()` to release the client back to the pool 
+		done();
+	 
+		if(err) {
+		  return console.error('error running query', err);
+		}
+		res.setHeader('Access-Control-Allow-Origin','*');
+		console.log(result.rows);
+    res.json(result.rows); // servidor retorna a consulta em formato json
+			
+		});
+	});
+});
+
+
+
 app.get('/consultaEstabelecimentoEsp', function (req, res) {
 	
 	// to run a query we can acquire a client from the pool, 
@@ -152,6 +178,14 @@ app.post('/insere', function (req, res) {
 //var registro = {codigo:'4', nome:'medalha', quantidade:'100', valor: '5.0'};
 pool.connect(function(err, client, done) {
   if(err) {
+			console.log(req.body.id_cliente);
+			console.log(req.body.id_cliente);
+			console.log(req.body.id_servico);
+			console.log(req.body.id_tipo_pagamento);
+			console.log(req.body.id_estabelecimento );
+			console.log(req.body.data_reserva);
+			console.log(req.body.horario);
+			console.log(req.body.fg_ativo);
     return console.error('error fetching client from pool', err);
   }
   client.query('insert into tb_reservas (id_reserva,id_cliente, id_servico, id_tipo_pagamento, id_estabelecimento, data_reserva, horario, fg_ativo) values (' 

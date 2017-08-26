@@ -1,17 +1,17 @@
 <ion-view>
     <ion-content>
         <div id="divImgEstabelecimento" class="item semBorda">
-            <img class="full-image semBorda" src="http://i.imgur.com/AKzer2d.jpg">
+            <img class="full-image semBorda" src="img\foto-full.jpg">
         </div>
         <div id="divDetalhesEstabelecimento" class="row ">
             <!--<div id="divAvatar" class="row col-25 row-left">-->
             <div class="item item-thumbnail-left item-icon-right row col-25 row-left semBorda">
-                <img src="img/ionic.png">
+                < <img src="\img\tony-logo.png" class="imagem-redonda">
             </div>
-            <div class="row col row-center text-center ">
-                <h4 class="mesma-linha">Milani Agropet</h4>
-                <p class="quebra-sem-espaco">Rua das Árvores, 931. Estação.</p>
-                <p class="quebra-sem-espaco">Telefone:(99) 9999-9999</p>
+            <div class="row col row-center text-center" ng-repeat="estabelecimento in vm.estabelecimentosEsp">
+                <h4 class="mesma-linha">{{estabelecimento.nome}}</h4>
+                <p class="quebra-sem-espaco">{{estabelecimento.endereco}} , {{estabelecimento.numero}}. {{estabelecimento.bairro}}</p>
+                <p class="quebra-sem-espaco">Telefone: {{estabelecimento.telefone_1}}</p>
             </div>
         </div>
         <div id="divReserva" class="row">
@@ -35,7 +35,7 @@
         </div>
         <!--Combo de serviços oferecidos-->
         <div id="divServicos col">
-            <label class="item item-input item-select" data-ng-init="consultaServicos();consultaPagamentos()">
+            <label class="item item-input item-select" data-ng-init="consultaServicos();consultaPagamentos();consultaEsp()">
             <div class="input-label">
              Serviços:
             </div>
@@ -59,12 +59,12 @@
         <br>
         <!--Botões-->
         <div id="divBtns" class="row has-footer">
-              <div id="btnConfirma" class="row col-50">
+            <div id="btnConfirma" class="row col-50">
                 <button class="button button-block button-balanced icon icon-left ion-checkmark-circled" ng-click="confirmaReserva()">Confirmar</button>
             </div>
             <br>
             <div id="btnConfirma" class="row col-50">
-                <button class="button button-block button-assertive icon icon-left ion-android-cancel" >Cancelar</button>
+                <button class="button button-block button-assertive icon icon-left ion-android-cancel" ng-click="cancelar()">Cancelar</button>
             </div>
         </div>
 

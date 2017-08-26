@@ -42,8 +42,8 @@ angular.module('app.controllers', ['app.service'])
                     });
             };
 
-            $scope.goReserva = function () {
-                window.location.href = "#/menu/reserva";
+            $scope.goEstabelecimento = function () {
+                window.location.href = "#/menu/estabelecimento";
             };
 
         }])
@@ -123,7 +123,8 @@ angular.module('app.controllers', ['app.service'])
             //Objeto que recebe os serviços daquele estabelecimento 
             $scope.vm = {
                 estReserva: [],
-                estPagamento: []
+                estPagamento: [],
+                estabelecimentosEsp: []
             };
             ;
 
@@ -159,6 +160,24 @@ angular.module('app.controllers', ['app.service'])
                     });
             };
 
+            $scope.consultaEsp = function () {
+                console.log("cheguei");
+                Estabelecimentos.getEstabelecimentoEsp()
+                    .then(function (response) {
+                        $scope.produtos = response;
+                        console.log(response);
+                        response.forEach(function (item) {
+                            $scope.vm.estabelecimentosEsp.push({
+                                nome: item.nome,
+                                endereco: item.endereco,
+                                numero: item.numero,
+                                bairro: item.bairro,
+                                telefone_1: item.telefone_1
+                            });
+                        });
+                    });
+            };
+
             //Função que recupera serviço selecionado
             $scope.showSelectValue = function (mySelect) {
                 console.log(mySelect);
@@ -188,7 +207,7 @@ angular.module('app.controllers', ['app.service'])
                     fg_ativo: $scope.fg_ativo
                 });
                 console.log(lista);
-                Estabelecimentos.postEstabelecimentos(5,1,2, 1, 2, "27/08/2017", "18",1);
+                Estabelecimentos.postEstabelecimentos(3,1,2, 1, 2, "29/08/2017", "15",1);
             };
 
             //Popup de confirmação
@@ -199,26 +218,46 @@ angular.module('app.controllers', ['app.service'])
                     template: 'Deseja confirmar sua reserva?',
 
                 });
-                confirmPopup.then(function (res) {
-                    if (res) {
-                        console.log('Sim');
-                    } else {
-                        console.log('Não');
-                    }
-                });
+                // confirmPopup.then(function (res) {
+                //     if (res) {
+                //         console.log('Sim');
+                //     } else {
+                //         console.log('Não');
+                //     }
+                // });
 
             };
         }])
 
-    .controller('ultimasReservasCtrl', function ($scope) {
+    .controller('ultimasReservasCtrl',['$scope','Estabelecimentos',
+         function ($scope,Estabelecimentos) {
         //Objeto para ultimas reservasCtrl
-        $scope.ultmasReservas = [
-            { id: '1', nomeEstabelecimento: 'Pet Shop Santos Dummont', dataReserva: '21/03/2017', horarioReserva: '15h30', valor: 'R$150,00' },
-            { id: '2', nomeEstabelecimento: 'Salão da Didica', dataReserva: '23/03/2017', horarioReserva: '17h30', valor: 'R$250,00' },
-            { id: '3', nomeEstabelecimento: 'Consultório Odontológico', dataReserva: '28/03/2017', horarioReserva: '14h30', valor: 'R$80,00' },
-            { id: '4', nomeEstabelecimento: 'Restaurante Barão', dataReserva: '01/04/2017', horarioReserva: '12h30', valor: 'R$50,00' },
-        ];
-    })
+         $scope.vm = {
+                reservas: []
+            };
+
+
+            
+			$scope.consulta = function () {
+                console.log("cheguei");
+                Estabelecimentos.getReservas()
+                    .then(function (response) {
+                        $scope.produtos = response;
+                        console.log(response);
+                        response.forEach(function (item) {
+                            $scope.vm.reservas.push({
+                                nome: item.nome,
+                                data_reserva: item.data_reserva,
+                                horario: item.horario,
+                                valor: item.valor
+                            });
+                        });
+                    });
+            };
+
+
+        
+    }])
     .controller('estabelecimentoCtrl', ['$scope', 'Estabelecimentos',
         function ($scope, Estabelecimentos) {
 
@@ -260,5 +299,3 @@ angular.module('app.controllers', ['app.service'])
             };
 
         }])
-
-

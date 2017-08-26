@@ -4,7 +4,7 @@
         <br>
         <br>
 
-        <div id="divFiltros" class="row">
+        <div id="divFiltros" class="row" data-ng-init="consulta()">
             <div class="col col-50">
                 <ion-list>
                     <label class="item item-input">
@@ -32,8 +32,8 @@
         </div>
         <br>
         <div>
-            <ion-item ng-repeat="reserva in ultmasReservas | filter: search" class="item-button-right">
-                <p>{{reserva.nomeEstabelecimento}} {{reserva.dataReserva}} </p>
+            <ion-item ng-repeat="reserva in vm.reservas | filter: search" class="item-button-right">
+                <p>{{reserva.nome}} R$:{{reserva.valor}}</p>
             </ion-item>
         </div>
     </ion-pane>
